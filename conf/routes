@@ -5,5 +5,3 @@
 
 GET  /api/ping  controllers.ApiController.ping
 
-GET  /api/ideas/:id  controllers.ApiController.getIdea(id)
-GET  /api/users/:username  controllers.ApiController.getUser(username)

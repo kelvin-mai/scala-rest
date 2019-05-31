@@ -3,27 +3,20 @@ package controllers
 import javax.inject.{Inject, Singleton}
 import play.api.mvc.{AbstractController, ControllerComponents}
 import play.api.libs.json.Json
-import repositories.IdeaRepository
+import play.modules.reactivemongo._
+import reactivemongo.bson.BSONObjectID
 
-@Singleton
-class ApiController @Inject()(
-                              cc: ControllerComponents,
-                              ideas: IdeaRepository,
-                              ) extends AbstractController(cc) {
+class ApiController @Inject() (
+  components: ControllerComponents,
+  val reactiveMongoApi: ReactiveMongoApi
+) extends AbstractController(components)
+  with MongoController 
+  with ReactiveMongoComponents {
 
   def ping = Action { implicit request => 
-    Ok("Hello world!")
-  }
-
-  def getIdea(ideaId: String) = Action { implicit request =>
-    ideas.getIdea(ideaId) map { idea => 
-      Ok(Json.toJson(idea))
-    } getOrElse NotFound
-  }
-
-  def getUser(username: String) = Action { implicit request => 
-    ideas.getUser(username) map { user => 
-      Ok(Json.toJson(user))
-    } getOrElse NotFound
+    Ok(Json.obj(
+      "hello" -> "world",
+      "ping" -> true
+    ))
   }
 }
