@@ -1,7 +1,6 @@
 package models
 
-import play.api.libs.json._
-import reactivemongo.bson._
+import play.api.libs.json.{Json, Writes}
 
 case class User(
   _id: String,

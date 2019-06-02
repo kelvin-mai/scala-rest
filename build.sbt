@@ -15,8 +15,4 @@ libraryDependencies += "org.reactivemongo" %% "play2-reactivemongo" % "0.17.0-pl
 //TwirlKeys.templateImports += "com.kelvinmai.controllers._"
 
 // Adds additional packages into conf/routes
-// play.sbt.routes.RoutesKeys.routesImport += "com.kelvinmai.binders._"
-
-import play.sbt.routes.RoutesKeys
-
-RoutesKeys.routesImport += "play.modules.reactivemongo.PathBindables._"
+play.sbt.routes.RoutesKeys.routesImport += "play.modules.reactivemongo.PathBindables._"

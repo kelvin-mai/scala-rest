@@ -3,8 +3,8 @@ package models
 import javax.inject.Inject
 
 import scala.concurrent.{ ExecutionContext, Future }
-import play.api.libs.json._
-import reactivemongo.bson._
+import play.api.libs.json.{ Json, OFormat }
+import reactivemongo.bson.BSONObjectID
 import reactivemongo.play.json._
 
 case class Idea(

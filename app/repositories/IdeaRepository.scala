@@ -1,10 +1,10 @@
 package repositories
 
 import javax.inject.Inject
-import scala.concurrent.{ExecutionContext, Future }
-import reactivemongo.api._
-import reactivemongo.api.commands._
-import reactivemongo.bson._
+import scala.concurrent.{ ExecutionContext, Future }
+import reactivemongo.api.{ Collection, ReadPreference, Cursor }
+import reactivemongo.api.commands.{ WriteResult }
+import reactivemongo.bson.{ BSONDocument, BSONObjectID }
 import reactivemongo.play.json._
 import reactivemongo.play.json.collection.JSONCollection
 import play.modules.reactivemongo.ReactiveMongoApi

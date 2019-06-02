@@ -20,7 +20,7 @@ class IdeaController @Inject() (
     }
   }
   
-  def createIdea() = Action.async(parse.json) {
+  def createIdea = Action.async(parse.json) {
     _.body.validate[Idea].map { idea =>
       ideasRepo.create(idea).map { _ =>
         Created
