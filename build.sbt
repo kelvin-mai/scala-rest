@@ -12,11 +12,8 @@ libraryDependencies += jdbc
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.2" % Test
 libraryDependencies += "org.reactivemongo" %% "play2-reactivemongo" % "0.17.0-play27"
 libraryDependencies += "org.postgresql" % "postgresql" % "42.2.5"
-libraryDependencies ++= Seq(
-  "org.scalikejdbc" %% "scalikejdbc"       % "3.3.2",
-  "org.scalikejdbc" %% "scalikejdbc-config" % "3.3.2",
-  "ch.qos.logback" %% "logback-classic" % "1.2.3",
-)
+libraryDependencies += "com.typesafe.play" %% "play-slick" % "3.0.0"
+libraryDependencies += "org.mindrot" % "jbcrypt" % "0.3m" 
 
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "com.kelvinmai.controllers._"

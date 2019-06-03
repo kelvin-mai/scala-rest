@@ -1,28 +1,20 @@
 package models
 
-import play.api.libs.json.{Json, Writes}
-import reactivemongo.bson.{BSONObjectID, BSONDocument, BSONDocumentReader, BSONDocumentWriter}
-import reactivemongo.play.json._
+import javax.inject.Inject
+import play.api.libs.json._
+import java.sql.Date
 
 case class User(
-  _id: Option[BSONObjectID],
+  id: Int,
   username: String, 
-  password: String)
+  password: String,
+  created_date: Date)
 
 object User {
- implicit object UserWriter extends BSONDocumentWriter[User]{
-    def write(user:User):BSONDocument = BSONDocument(
-      "_id" -> user._id.getOrElse(BSONObjectID.generate),
+  implicit val userWrites: Writes[User] = Writes { user =>
+    Json.obj(
+      "id" -> user.id,
       "username" -> user.username,
-      "password" -> user.password
-    )
+      "created_date" -> user.created_date)
   }
-
-  implicit object UserReader extends BSONDocumentReader[User]{
-    def read(doc:BSONDocument):User = User(
-      doc.getAs[BSONObjectID]("_id"),
-      doc.getAs[String]("username").getOrElse(""),
-      doc.getAs[String]("passwoord").getOrElse("")
-    )
-  } 
 }
