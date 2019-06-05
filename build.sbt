@@ -12,7 +12,9 @@ libraryDependencies += jdbc
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.2" % Test
 libraryDependencies += "org.reactivemongo" %% "play2-reactivemongo" % "0.17.0-play27"
 libraryDependencies += "org.postgresql" % "postgresql" % "42.2.5"
-libraryDependencies += "com.typesafe.play" %% "play-slick" % "3.0.0"
+libraryDependencies += "com.typesafe.slick" %% "slick" % "3.3.1"
+libraryDependencies += "org.slf4j" % "slf4j-nop" % "1.7.26"
+libraryDependencies += "com.typesafe.slick" %% "slick-hikaricp" % "3.3.1"
 libraryDependencies += "org.mindrot" % "jbcrypt" % "0.3m" 
 
 // Adds additional packages into Twirl

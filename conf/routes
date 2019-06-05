@@ -11,3 +11,5 @@ POST  /api/ideas  controllers.IdeaController.createIdea
 GET  /api/ideas/:id  controllers.IdeaController.readIdea(id: reactivemongo.bson.BSONObjectID)
 PUT  /api/ideas/:id  controllers.IdeaController.updateIdea(id: reactivemongo.bson.BSONObjectID)
 DELETE  /api/ideas/:id  controllers.IdeaController.deleteIdea(id: reactivemongo.bson.BSONObjectID)
+
+GET  /api/users  controllers.UserController.listUsers

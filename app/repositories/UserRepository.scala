@@ -1,20 +1,17 @@
 package repositories
 
 import javax.inject.Inject
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.{ ExecutionContext, Future }
 import java.sql.Date
-import play.api.db.slick.DatabaseConfigProvider
-import play.api.db.slick.HasDatabaseConfigProvider
-import slick.jdbc.JdbcProfile
+import slick.jdbc.PostgresProfile.api._
 import org.mindrot.jbcrypt.BCrypt
 import models.User
 
 class UserRepository @Inject() (
-  val dbConfigProvider: DatabaseConfigProvider
-) (implicit ec: ExecutionContext) extends HasDatabaseConfigProvider[JdbcProfile] {
-  import profile.api._
-
+) (implicit ec: ExecutionContext) { 
   private val Users = TableQuery[UsersTable]
+  val db = Database
 
   private class UsersTable(tag: Tag) extends Table[User](tag, "users") {
     def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
@@ -31,10 +28,10 @@ class UserRepository @Inject() (
     password = BCrypt.hashpw(user.password, BCrypt.gensalt(12))
   )).map { _ => () }
 
-  def login(username: String, password: String): Option[User] = { 
-    val user = db.run(Users.filter(_.username === username))
-    if (BCrypt.checkpw(user.password, password)) {
-      Some(user)
-    } else None
-  }
+  // def login(username: String, password: String): Option[User] = { 
+  //   val user = db.run(Users.filter(_.username === username))
+  //   if (BCrypt.checkpw(user.password, password)) {
+  //     Some(user)
+  //   } else None
+  // }
 }
