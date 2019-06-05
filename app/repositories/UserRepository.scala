@@ -2,16 +2,16 @@ package repositories
 
 import javax.inject.Inject
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.{ ExecutionContext, Future }
+import scala.concurrent.{ Future }
 import java.sql.Date
 import slick.jdbc.PostgresProfile.api._
 import org.mindrot.jbcrypt.BCrypt
 import models.User
 
 class UserRepository @Inject() (
-) (implicit ec: ExecutionContext) { 
+) () { 
   private val Users = TableQuery[UsersTable]
-  val db = Database
+  val db = Database.forConfig("database")
 
   private class UsersTable(tag: Tag) extends Table[User](tag, "users") {
     def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
