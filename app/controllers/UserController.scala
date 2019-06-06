@@ -26,7 +26,11 @@ class UserController @Inject() (
           "status" -> "success"
         ))
       }.recoverWith {
-        case e => Future {InternalServerError("ERROR: " + e)}
+        case e => Future {InternalServerError(Json.obj(
+          "status" -> "failed",
+          // "error" -> e.toString() // for debugging
+          "error" -> "Something went wrong" 
+        ))}
       }
     }.getOrElse(Future.successful(BadRequest(Json.obj(
       "status" -> "failed",

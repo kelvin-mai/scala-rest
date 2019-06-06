@@ -1,17 +1,15 @@
 package models
 
 import javax.inject.Inject
-
-import scala.concurrent.{ ExecutionContext, Future }
-import play.api.libs.json.{ Json, OFormat }
-import reactivemongo.bson.BSONObjectID
-import reactivemongo.play.json._
+import java.sql.Date
+import play.api.libs.json.{Json, Format}
 
 case class Idea(
-  _id: Option[BSONObjectID], 
+  id: Option[Int], 
   title: String, 
-  description: Option[String])
+  description: Option[String],
+  created_date: Date)
 
 object Idea {
-  implicit val format: OFormat[Idea] = Json.format[Idea]
+  implicit val format: Format[Idea] = Json.format[Idea]
 }

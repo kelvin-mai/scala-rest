@@ -4,3 +4,9 @@ create table users (
   password text not null,
   created_date timestamp default now()
 );
+
+create table ideas (
+  id serial primary key not null,
+  title text not null,
+  description text not null
+);
