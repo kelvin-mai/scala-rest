@@ -14,7 +14,7 @@ class UserController @Inject() (
   usersRepo: UserRepository
 ) (implicit ec: ExecutionContext) extends AbstractController(components) {
   def listUsers = Action.async { _ => 
-    usersRepo.all().map { users =>
+    usersRepo.all.map { users =>
       Ok(Json.toJson(users))
     }
   }

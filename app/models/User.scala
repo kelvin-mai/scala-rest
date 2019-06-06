@@ -18,13 +18,11 @@ object User {
       "created_date" -> user.created_date.toString)
   }
 
-  def authToUser(auth: Auth): User = new User(None, auth.username, auth.password, new Date(new java.util.Date().getTime()))
+  def fromAuth(auth: Auth): User = new User(None, auth.username, auth.password, new Date(new java.util.Date().getTime()))
 }
 
 case class Auth(username: String, password: String)
 
 object Auth {
   implicit val authFormat: OFormat[Auth] = Json.format[Auth]
-
-  // def toUser(): User = User(None, this.username, this.password, None)
 }

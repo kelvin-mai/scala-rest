@@ -1,48 +1,30 @@
-// package repositories
+package repositories
 
-// import javax.inject.Inject
-// import scala.concurrent.{ ExecutionContext, Future }
-// import reactivemongo.api.{ Collection, ReadPreference, Cursor }
-// import reactivemongo.api.commands.{ WriteResult }
-// import reactivemongo.bson.{ BSONDocument, BSONObjectID }
-// import reactivemongo.play.json._
-// import reactivemongo.play.json.collection.JSONCollection
-// import play.modules.reactivemongo.ReactiveMongoApi
-// import models.Idea
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.{ Future }
+import java.sql.Date
+import slick.jdbc.PostgresProfile.api._
+import models.{Idea, IdeaDTO}
 
-// class IdeaRepository @Inject()(
-//   implicit ec: ExecutionContext, 
-//   reactiveMongoApi: ReactiveMongoApi
-// ){
-//   private def collection: Future[JSONCollection] = 
-//     reactiveMongoApi.database.map(_.collection("ideas"))
-  
-//   def list(limit: Int = 100): Future[Seq[Idea]] = 
-//     collection.flatMap(_
-//       .find(BSONDocument())
-//       .cursor[Idea](ReadPreference.primary)
-//       .collect[Seq](limit, Cursor.FailOnError[Seq[Idea]]()))
+class IdeaRepository { 
+  private val Ideas = TableQuery[IdeasTable]
+  val db = Database.forConfig("database")
 
-//   def create(idea: Idea): Future[WriteResult] =
-//     collection.flatMap(_.insert(idea))
+  private class IdeasTable(tag: Tag) extends Table[Idea](tag, "ideas") {
+    def id = column[Option[Int]]("id", O.PrimaryKey, O.AutoInc)
+    def title = column[String]("title")
+    def description = column[Option[String]]("description")
+    def created_date = column[Date]("created_date")
+    def * = (id, title, description, created_date) <> ((Idea.apply _).tupled, Idea.unapply)
+  }
 
-//   def read(id: BSONObjectID): Future[Option[Idea]] = 
-//     collection.flatMap(_
-//       .find(BSONDocument("_id" -> id))
-//       .one[Idea])
-  
-//   def update(id: BSONObjectID, idea: Idea): Future[Option[Idea]] = 
-//     collection.flatMap(_
-//       .findAndUpdate(BSONDocument("_id" -> id),
-//         BSONDocument(
-//           f"$$set" -> BSONDocument(
-//             "title" -> idea.title,
-//             "description" -> idea.description)),
-//         true)
-//       .map(_.result[Idea]))
-  
-//   def destroy(id: BSONObjectID): Future[Option[Idea]] =
-//     collection.flatMap(_
-//       .findAndRemove(BSONDocument("_id" -> id))
-//       .map(_.result[Idea]))
-// }
+  def list: Future[Seq[Idea]] = db.run(Ideas.result)
+
+  def create(idea: IdeaDTO) = db.run(Ideas += Idea.fromDTO(idea)).map { _ => () }
+
+  def read(id: Int) = db.run(Ideas.filter(_.id === id).result.headOption)
+
+  def update(id: Int, idea: IdeaDTO) = db.run(Ideas.filter(_.id === id).update(Idea.fromDTO(idea.copy(id = Some(id))))).map { _ => Idea.apply } 
+    
+  def delete(id: Int) = db.run(Ideas.filter(_.id === id).delete).map { row => row > 0 }
+}
