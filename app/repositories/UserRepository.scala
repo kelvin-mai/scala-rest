@@ -6,7 +6,7 @@ import scala.concurrent.{ Future }
 import java.sql.Date
 import slick.jdbc.PostgresProfile.api._
 import org.mindrot.jbcrypt.BCrypt
-import models.User
+import models.{ Auth, User }
 
 class UserRepository @Inject() (
 ) () { 
@@ -14,7 +14,7 @@ class UserRepository @Inject() (
   val db = Database.forConfig("database")
 
   private class UsersTable(tag: Tag) extends Table[User](tag, "users") {
-    def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
+    def id = column[Option[Int]]("id", O.PrimaryKey, O.AutoInc)
     def username = column[String]("username")
     def password = column[String]("password")
     def created_date = column[Date]("created_date")
@@ -24,9 +24,10 @@ class UserRepository @Inject() (
   // for debugging only
   def all(): Future[Seq[User]] = db.run(Users.result)
 
-  def register(user: User) = db.run(Users += user.copy(
-    password = BCrypt.hashpw(user.password, BCrypt.gensalt(12))
-  )).map { _ => () }
+  def register(user: Auth) = db.run(Users += User.authToUser(
+    user.copy(
+      password = BCrypt.hashpw(user.password, BCrypt.gensalt(12))
+    ))).map { _ => () }
 
   // def login(username: String, password: String): Option[User] = { 
   //   val user = db.run(Users.filter(_.username === username))

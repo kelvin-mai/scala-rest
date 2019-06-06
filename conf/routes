@@ -13,3 +13,4 @@ PUT  /api/ideas/:id  controllers.IdeaController.updateIdea(id: reactivemongo.bso
 DELETE  /api/ideas/:id  controllers.IdeaController.deleteIdea(id: reactivemongo.bson.BSONObjectID)
 
 GET  /api/users  controllers.UserController.listUsers
+POST  /api/auth/register  controllers.UserController.register
