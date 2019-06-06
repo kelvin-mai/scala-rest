@@ -25,4 +25,12 @@ class UserController @Inject() (
       }
     }.getOrElse(Future.successful(BadRequest("Invalid format")))
   }
+
+  def login = Action.async(parse.json) {
+    _.body.validate[Auth].map { user => 
+      usersRepo.login(user).map { _ => 
+        Ok(Json.toJson(user))
+      }
+    }.getOrElse(Future.successful(BadRequest("Invalid format")))
+  }
 }

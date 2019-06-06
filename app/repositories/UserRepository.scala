@@ -29,10 +29,11 @@ class UserRepository @Inject() (
       password = BCrypt.hashpw(user.password, BCrypt.gensalt(12))
     ))).map { _ => () }
 
-  // def login(username: String, password: String): Option[User] = { 
-  //   val user = db.run(Users.filter(_.username === username))
-  //   if (BCrypt.checkpw(user.password, password)) {
-  //     Some(user)
-  //   } else None
-  // }
+  def login(auth: Auth) = { 
+    db.run(Users.filter(_.username === auth.username).result.headOption)
+
+    // if (BCrypt.checkpw(user.password, auth.password)) {
+    //   Some(user)
+    // } else None
+  }
 }

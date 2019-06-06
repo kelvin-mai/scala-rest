@@ -14,3 +14,4 @@ DELETE  /api/ideas/:id  controllers.IdeaController.deleteIdea(id: reactivemongo.
 
 GET  /api/users  controllers.UserController.listUsers
 POST  /api/auth/register  controllers.UserController.register
+POST  /api/auth/login  controllers.UserController.login
