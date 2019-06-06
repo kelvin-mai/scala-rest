@@ -30,7 +30,7 @@ class UserRepository @Inject() (
     ))).map { _ => () }
 
   def login(auth: Auth) = { 
-    db.run(Users.filter(_.username === auth.username).result.headOption)
+    db.run(Users.filter(u => u.username === auth.username).result.headOption)
 
     // if (BCrypt.checkpw(user.password, auth.password)) {
     //   Some(user)
