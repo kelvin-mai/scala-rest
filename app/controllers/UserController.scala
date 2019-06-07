@@ -20,6 +20,12 @@ class UserController @Inject()(
     }
   }
 
+  def findByToken(token: String) = Action.async { _ =>
+    usersRepo.findByToken(token).map { user =>
+      Ok(Json.toJson(user))
+    }
+  }
+
   def register = Action.async(parse.json) {
     _.body
       .validate[Auth]

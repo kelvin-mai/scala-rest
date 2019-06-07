@@ -3,6 +3,7 @@ package models
 import javax.inject.Inject
 import play.api.libs.json._
 import java.sql.Date
+import pdi.jwt.{JwtJson, JwtAlgorithm}
 
 case class User(
     id: Option[Int],
@@ -16,7 +17,12 @@ object User {
     Json.obj(
       "id" -> user.id,
       "username" -> user.username,
-      "created_date" -> user.created_date.toString
+      "created_date" -> user.created_date.toString,
+      "token" -> JwtJson.encode(
+        Json.obj("id" -> user.id, "username" -> user.username),
+        "secretKey",
+        JwtAlgorithm.HS256
+      )
     )
   }
 

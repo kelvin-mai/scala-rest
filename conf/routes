@@ -13,5 +13,6 @@ PUT  /api/ideas/:id  controllers.IdeaController.updateIdea(id: Int)
 DELETE  /api/ideas/:id  controllers.IdeaController.deleteIdea(id: Int)
 
 GET  /api/users  controllers.UserController.listUsers
+GET  /api/users/:token  controllers.UserController.findByToken(token: String)
 POST  /api/auth/register  controllers.UserController.register
 POST  /api/auth/login  controllers.UserController.login

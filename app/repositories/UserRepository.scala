@@ -6,6 +6,9 @@ import java.sql.Date
 import slick.jdbc.PostgresProfile.api._
 import org.mindrot.jbcrypt.BCrypt
 import models.{Auth, User}
+import pdi.jwt.{JwtJson, JwtAlgorithm}
+import scala.util.Try
+import play.api.libs.json._
 
 class UserRepository {
   private val Users = TableQuery[UsersTable]
@@ -37,5 +40,14 @@ class UserRepository {
 
   def login(auth: Auth) = {
     db.run(Users.filter(u => u.username === auth.username).result.headOption)
+  }
+
+  def findByToken(token: String) = {
+    val decoded: Option[Int] = JwtJson
+      .decodeJson(token, "secretKey", Seq(JwtAlgorithm.HS256))
+      .get
+      .apply("id")
+      .asOpt[Int]
+    db.run(Users.filter(u => u.id === decoded).result.headOption)
   }
 }

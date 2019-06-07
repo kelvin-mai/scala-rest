@@ -74,18 +74,6 @@
             "/Users/kelvinmai/.ivy2/cache/com.zaxxer/HikariCP/bundles/HikariCP-3.3.1.jar",
             "/Users/kelvinmai/.ivy2/cache/com.googlecode.usc/jdbcdslog/jars/jdbcdslog-1.0.6.2.jar",
             "/Users/kelvinmai/.ivy2/cache/tyrex/tyrex/jars/tyrex-1.0.1.jar",
-            "/Users/kelvinmai/.ivy2/cache/org.reactivemongo/play2-reactivemongo_2.12/jars/play2-reactivemongo_2.12-0.17.0-play27.jar",
-            "/Users/kelvinmai/.ivy2/cache/org.reactivemongo/reactivemongo_2.12/jars/reactivemongo_2.12-0.17.0.jar",
-            "/Users/kelvinmai/.ivy2/cache/org.reactivemongo/reactivemongo-bson-macros_2.12/jars/reactivemongo-bson-macros_2.12-0.17.0.jar",
-            "/Users/kelvinmai/.ivy2/cache/org.reactivemongo/reactivemongo-bson_2.12/jars/reactivemongo-bson_2.12-0.17.0.jar",
-            "/Users/kelvinmai/.ivy2/cache/org.reactivemongo/reactivemongo-shaded/jars/reactivemongo-shaded-0.17.0.jar",
-            "/Users/kelvinmai/.ivy2/cache/dnsjava/dnsjava/jars/dnsjava-2.1.8.jar",
-            "/Users/kelvinmai/.ivy2/cache/commons-codec/commons-codec/jars/commons-codec-1.11.jar",
-            "/Users/kelvinmai/.ivy2/cache/org.apache.logging.log4j/log4j-api/jars/log4j-api-2.5.jar",
-            "/Users/kelvinmai/.ivy2/cache/org.reactivemongo/reactivemongo-play-json_2.12/jars/reactivemongo-play-json_2.12-0.17.0-play27.jar",
-            "/Users/kelvinmai/.ivy2/cache/com.typesafe.play/play-iteratees_2.12/jars/play-iteratees_2.12-2.6.1.jar",
-            "/Users/kelvinmai/.ivy2/cache/org.scala-stm/scala-stm_2.12/jars/scala-stm_2.12-0.8.jar",
-            "/Users/kelvinmai/.ivy2/cache/com.typesafe.play/play-iteratees-reactive-streams_2.12/jars/play-iteratees-reactive-streams_2.12-2.6.1.jar",
             "/Users/kelvinmai/.ivy2/cache/org.postgresql/postgresql/bundles/postgresql-42.2.5.jar",
             "/Users/kelvinmai/.ivy2/cache/com.typesafe.slick/slick_2.12/bundles/slick_2.12-3.3.1.jar",
             "/Users/kelvinmai/.ivy2/cache/org.scala-lang.modules/scala-collection-compat_2.12/bundles/scala-collection-compat_2.12-2.0.0.jar",
@@ -122,6 +110,7 @@
             "/Users/kelvinmai/.ivy2/cache/org.apache.httpcomponents/httpclient/jars/httpclient-4.5.6.jar",
             "/Users/kelvinmai/.ivy2/cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.4.10.jar",
             "/Users/kelvinmai/.ivy2/cache/commons-logging/commons-logging/jars/commons-logging-1.2.jar",
+            "/Users/kelvinmai/.ivy2/cache/commons-codec/commons-codec/jars/commons-codec-1.10.jar",
             "/Users/kelvinmai/.ivy2/cache/org.seleniumhq.selenium/htmlunit-driver/jars/htmlunit-driver-2.33.3.jar",
             "/Users/kelvinmai/.ivy2/cache/net.sourceforge.htmlunit/htmlunit/jars/htmlunit-2.33.jar",
             "/Users/kelvinmai/.ivy2/cache/xalan/xalan/jars/xalan-2.7.2.jar",
@@ -1204,198 +1193,6 @@
                     ]
                 },
                 {
-                    "organization" : "org.reactivemongo",
-                    "name" : "play2-reactivemongo_2.12",
-                    "version" : "0.17.0-play27",
-                    "artifacts" : [
-                        {
-                            "name" : "play2-reactivemongo_2.12",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/org.reactivemongo/play2-reactivemongo_2.12/jars/play2-reactivemongo_2.12-0.17.0-play27.jar"
-                        },
-                        {
-                            "name" : "play2-reactivemongo_2.12",
-                            "classifier" : "sources",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/org.reactivemongo/play2-reactivemongo_2.12/srcs/play2-reactivemongo_2.12-0.17.0-play27-sources.jar"
-                        }
-                    ]
-                },
-                {
-                    "organization" : "org.reactivemongo",
-                    "name" : "reactivemongo_2.12",
-                    "version" : "0.17.0",
-                    "artifacts" : [
-                        {
-                            "name" : "reactivemongo_2.12",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/org.reactivemongo/reactivemongo_2.12/jars/reactivemongo_2.12-0.17.0.jar"
-                        },
-                        {
-                            "name" : "reactivemongo_2.12",
-                            "classifier" : "sources",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/org.reactivemongo/reactivemongo_2.12/srcs/reactivemongo_2.12-0.17.0-sources.jar"
-                        }
-                    ]
-                },
-                {
-                    "organization" : "org.reactivemongo",
-                    "name" : "reactivemongo-bson-macros_2.12",
-                    "version" : "0.17.0",
-                    "artifacts" : [
-                        {
-                            "name" : "reactivemongo-bson-macros_2.12",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/org.reactivemongo/reactivemongo-bson-macros_2.12/jars/reactivemongo-bson-macros_2.12-0.17.0.jar"
-                        },
-                        {
-                            "name" : "reactivemongo-bson-macros_2.12",
-                            "classifier" : "sources",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/org.reactivemongo/reactivemongo-bson-macros_2.12/srcs/reactivemongo-bson-macros_2.12-0.17.0-sources.jar"
-                        }
-                    ]
-                },
-                {
-                    "organization" : "org.reactivemongo",
-                    "name" : "reactivemongo-bson_2.12",
-                    "version" : "0.17.0",
-                    "artifacts" : [
-                        {
-                            "name" : "reactivemongo-bson_2.12",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/org.reactivemongo/reactivemongo-bson_2.12/jars/reactivemongo-bson_2.12-0.17.0.jar"
-                        },
-                        {
-                            "name" : "reactivemongo-bson_2.12",
-                            "classifier" : "sources",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/org.reactivemongo/reactivemongo-bson_2.12/srcs/reactivemongo-bson_2.12-0.17.0-sources.jar"
-                        }
-                    ]
-                },
-                {
-                    "organization" : "org.reactivemongo",
-                    "name" : "reactivemongo-shaded",
-                    "version" : "0.17.0",
-                    "artifacts" : [
-                        {
-                            "name" : "reactivemongo-shaded",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/org.reactivemongo/reactivemongo-shaded/jars/reactivemongo-shaded-0.17.0.jar"
-                        },
-                        {
-                            "name" : "reactivemongo-shaded",
-                            "classifier" : "sources",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/org.reactivemongo/reactivemongo-shaded/srcs/reactivemongo-shaded-0.17.0-sources.jar"
-                        }
-                    ]
-                },
-                {
-                    "organization" : "dnsjava",
-                    "name" : "dnsjava",
-                    "version" : "2.1.8",
-                    "artifacts" : [
-                        {
-                            "name" : "dnsjava",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/dnsjava/dnsjava/jars/dnsjava-2.1.8.jar"
-                        },
-                        {
-                            "name" : "dnsjava",
-                            "classifier" : "sources",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/dnsjava/dnsjava/srcs/dnsjava-2.1.8-sources.jar"
-                        }
-                    ]
-                },
-                {
-                    "organization" : "commons-codec",
-                    "name" : "commons-codec",
-                    "version" : "1.11",
-                    "artifacts" : [
-                        {
-                            "name" : "commons-codec",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/commons-codec/commons-codec/jars/commons-codec-1.11.jar"
-                        },
-                        {
-                            "name" : "commons-codec",
-                            "classifier" : "sources",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/commons-codec/commons-codec/srcs/commons-codec-1.11-sources.jar"
-                        }
-                    ]
-                },
-                {
-                    "organization" : "org.apache.logging.log4j",
-                    "name" : "log4j-api",
-                    "version" : "2.5",
-                    "artifacts" : [
-                        {
-                            "name" : "log4j-api",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/org.apache.logging.log4j/log4j-api/jars/log4j-api-2.5.jar"
-                        },
-                        {
-                            "name" : "log4j-api",
-                            "classifier" : "sources",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/org.apache.logging.log4j/log4j-api/srcs/log4j-api-2.5-sources.jar"
-                        }
-                    ]
-                },
-                {
-                    "organization" : "org.reactivemongo",
-                    "name" : "reactivemongo-play-json_2.12",
-                    "version" : "0.17.0-play27",
-                    "artifacts" : [
-                        {
-                            "name" : "reactivemongo-play-json_2.12",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/org.reactivemongo/reactivemongo-play-json_2.12/jars/reactivemongo-play-json_2.12-0.17.0-play27.jar"
-                        },
-                        {
-                            "name" : "reactivemongo-play-json_2.12",
-                            "classifier" : "sources",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/org.reactivemongo/reactivemongo-play-json_2.12/srcs/reactivemongo-play-json_2.12-0.17.0-play27-sources.jar"
-                        }
-                    ]
-                },
-                {
-                    "organization" : "com.typesafe.play",
-                    "name" : "play-iteratees_2.12",
-                    "version" : "2.6.1",
-                    "artifacts" : [
-                        {
-                            "name" : "play-iteratees_2.12",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/com.typesafe.play/play-iteratees_2.12/jars/play-iteratees_2.12-2.6.1.jar"
-                        },
-                        {
-                            "name" : "play-iteratees_2.12",
-                            "classifier" : "sources",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/com.typesafe.play/play-iteratees_2.12/srcs/play-iteratees_2.12-2.6.1-sources.jar"
-                        }
-                    ]
-                },
-                {
-                    "organization" : "org.scala-stm",
-                    "name" : "scala-stm_2.12",
-                    "version" : "0.8",
-                    "artifacts" : [
-                        {
-                            "name" : "scala-stm_2.12",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/org.scala-stm/scala-stm_2.12/jars/scala-stm_2.12-0.8.jar"
-                        },
-                        {
-                            "name" : "scala-stm_2.12",
-                            "classifier" : "sources",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/org.scala-stm/scala-stm_2.12/srcs/scala-stm_2.12-0.8-sources.jar"
-                        }
-                    ]
-                },
-                {
-                    "organization" : "com.typesafe.play",
-                    "name" : "play-iteratees-reactive-streams_2.12",
-                    "version" : "2.6.1",
-                    "artifacts" : [
-                        {
-                            "name" : "play-iteratees-reactive-streams_2.12",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/com.typesafe.play/play-iteratees-reactive-streams_2.12/jars/play-iteratees-reactive-streams_2.12-2.6.1.jar"
-                        },
-                        {
-                            "name" : "play-iteratees-reactive-streams_2.12",
-                            "classifier" : "sources",
-                            "path" : "/Users/kelvinmai/.ivy2/cache/com.typesafe.play/play-iteratees-reactive-streams_2.12/srcs/play-iteratees-reactive-streams_2.12-2.6.1-sources.jar"
-                        }
-                    ]
-                },
-                {
                     "organization" : "org.postgresql",
                     "name" : "postgresql",
                     "version" : "42.2.5",
@@ -1840,6 +1637,22 @@
                             "name" : "commons-logging",
                             "classifier" : "sources",
                             "path" : "/Users/kelvinmai/.ivy2/cache/commons-logging/commons-logging/srcs/commons-logging-1.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "commons-codec",
+                    "name" : "commons-codec",
+                    "version" : "1.10",
+                    "artifacts" : [
+                        {
+                            "name" : "commons-codec",
+                            "path" : "/Users/kelvinmai/.ivy2/cache/commons-codec/commons-codec/jars/commons-codec-1.10.jar"
+                        },
+                        {
+                            "name" : "commons-codec",
+                            "classifier" : "sources",
+                            "path" : "/Users/kelvinmai/.ivy2/cache/commons-codec/commons-codec/srcs/commons-codec-1.10-sources.jar"
                         }
                     ]
                 },
