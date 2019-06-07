@@ -11,10 +11,11 @@ import repositories.UserRepository
 
 class UserController @Inject()(
     components: ControllerComponents,
-    usersRepo: UserRepository
+    usersRepo: UserRepository,
+    withToken: TokenAuthentication
 )(implicit ec: ExecutionContext)
     extends AbstractController(components) {
-  def listUsers = Action.async { _ =>
+  def listUsers = withToken.async { _ =>
     usersRepo.all.map { users =>
       Ok(Json.toJson(users))
     }

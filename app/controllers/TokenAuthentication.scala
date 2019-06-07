@@ -1,24 +1,46 @@
 package controllers
 
+import javax.inject.Inject
 import play.api.mvc._
-import models.User
+import play.api.http.HeaderNames
+import scala.concurrent.{ExecutionContext, Future}
 
-trait TokenAuthentication { self: Controller =>
+import models.User
+import repositories.UserRepository
+
+case class AuthRequest[A](user: User, request: Request[A])
+    extends WrappedRequest[A](request)
+
+class TokenAuthentication @Inject()(
+    bodyParser: BodyParsers.Default,
+    usersRepo: UserRepository
+)(implicit ec: ExecutionContext)
+    extends ActionBuilder[AuthRequest, AnyContent] {
+  override protected def executionContext: ExecutionContext = ec
+  override def parser: BodyParser[AnyContent] = bodyParser
 
   def extractToken(header: String) = {
-    header.split("Bearer token=") match {
+    header.split(" ") match {
       case Array(_, token) => Some(token)
       case _               => None
     }
   }
 
-  // def withToken(f: => User => Request[AnyContent] => Result) = Action { implicit request =>
-  //   request.headers.get("Authorization") flatMap { header =>
-  //     extractToken(header) flatMap { token =>
-  //        UserRepository.findbytoken(token) map { user =>
-  //          f(user)(request)
-  //        }
-  //     }
-  //   } getOrElse Unauthorized("Invalid token")
-  // }
+  override def invokeBlock[A](
+      request: Request[A],
+      block: AuthRequest[A] => Future[Result]
+  ): Future[Result] = {
+    request.headers.get(HeaderNames.AUTHORIZATION) match {
+      case Some(token) =>
+        extractToken(token) match {
+          case Some(t) =>
+            usersRepo.findByToken(t) flatMap {
+              case Some(user) => block(AuthRequest(user, request))
+              case _          => Future.successful(Results.Unauthorized("inside find"))
+            }
+          case None => Future.successful(Results.Unauthorized("inside extract"))
+        }
+      case None => Future.successful(Results.Unauthorized("outside"))
+    }
+  }
 }
