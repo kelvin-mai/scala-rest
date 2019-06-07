@@ -32,7 +32,5 @@ class IdeaRepository {
       Ideas.filter(_.id === id).update(Idea.fromDTO(idea.copy(id = Some(id))))
     )
 
-  def delete(id: Int) = db.run(Ideas.filter(_.id === id).delete).map { row =>
-    row > 0
-  }
+  def delete(id: Int) = db.run(Ideas.filter(_.id === id).delete)
 }

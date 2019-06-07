@@ -78,16 +78,15 @@ class IdeaController @Inject()(
         ideasRepo
           .update(id, idea)
           .map { result =>
-            {
-              println(result)
-              // result match {
-              //   case true => Ok(Json.obj("status" -> result))
-              //   case false => NotFound(Json.obj(
-              //     "status" -> "failed",
-              //     "error" -> "Not Found"
-              //   ))
-              // }
-              Ok(Json.obj("test" -> result.toString()))
+            result match {
+              case 0 =>
+                NotFound(
+                  Json.obj(
+                    "status" -> "failed",
+                    "error" -> "Not Found"
+                  )
+                )
+              case _ => Ok(Json.obj("status" -> "success"))
             }
           }
           .recoverWith {
@@ -119,14 +118,14 @@ class IdeaController @Inject()(
       .delete(id)
       .map { result =>
         result match {
-          case true => Ok(Json.obj("status" -> "success"))
-          case false =>
+          case 0 =>
             NotFound(
               Json.obj(
                 "status" -> "failed",
                 "error" -> "Not Found"
               )
             )
+          case _ => Ok(Json.obj("status" -> "success"))
         }
       }
       .recoverWith {
