@@ -2,6 +2,7 @@ package controllers
 
 import javax.inject.Inject
 import play.api.mvc._
+import play.api.libs.json.Json
 import play.api.http.HeaderNames
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -36,11 +37,29 @@ class TokenAuthentication @Inject()(
           case Some(t) =>
             usersRepo.findByToken(t) flatMap {
               case Some(user) => block(AuthRequest(user, request))
-              case _          => Future.successful(Results.Unauthorized("inside find"))
+              case _ =>
+                Future.successful(
+                  Results.Unauthorized(
+                    Json.obj(
+                      "success" -> false,
+                      "error" -> "Invalid access token"
+                    )
+                  )
+                )
             }
-          case None => Future.successful(Results.Unauthorized("inside extract"))
+          case None =>
+            Future.successful(
+              Results.Unauthorized(
+                Json.obj("success" -> false, "error" -> "Invalid access token")
+              )
+            )
         }
-      case None => Future.successful(Results.Unauthorized("outside"))
+      case None =>
+        Future.successful(
+          Results.Unauthorized(
+            Json.obj("success" -> false, "error" -> "Invalid access token")
+          )
+        )
     }
   }
 }
