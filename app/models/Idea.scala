@@ -8,18 +8,20 @@ case class Idea(
     id: Option[Int],
     title: String,
     description: Option[String],
-    created_date: Date
+    created_date: Date,
+    author_id: Int
 )
 
 object Idea {
   implicit val format: Format[Idea] = Json.format[Idea]
 
-  def fromDTO(dto: IdeaDTO): Idea =
+  def fromDTO(dto: IdeaDTO, user: User): Idea =
     new Idea(
       dto.id,
       dto.title,
       dto.description,
-      new Date(new java.util.Date().getTime())
+      new Date(new java.util.Date().getTime()),
+      user.id.get
     )
 }
 

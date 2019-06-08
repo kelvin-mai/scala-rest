@@ -10,7 +10,8 @@ import repositories.IdeaRepository
 
 class IdeaController @Inject()(
     components: ControllerComponents,
-    ideasRepo: IdeaRepository
+    ideasRepo: IdeaRepository,
+    withToken: TokenAuthentication,
 )(implicit ec: ExecutionContext)
     extends AbstractController(components) {
   def listIdeas = Action.async { _ =>
@@ -19,12 +20,12 @@ class IdeaController @Inject()(
     }
   }
 
-  def createIdea = Action.async(parse.json) {
-    _.body
+  def createIdea = withToken.async(parse.json) { request => {
+    request.body
       .validate[IdeaDTO]
       .map { idea =>
         ideasRepo
-          .create(idea)
+          .create(idea, request.user)
           .map { _ =>
             Created(
               Json.obj(
@@ -54,6 +55,7 @@ class IdeaController @Inject()(
           )
         )
       )
+    }
   }
 
   def readIdea(id: Int) = Action.async { _ =>
@@ -71,12 +73,12 @@ class IdeaController @Inject()(
     }
   }
 
-  def updateIdea(id: Int) = Action.async(parse.json) {
-    _.body
+  def updateIdea(id: Int) = withToken.async(parse.json) { request => 
+    request.body
       .validate[IdeaDTO]
       .map { idea =>
         ideasRepo
-          .update(id, idea)
+          .update(id, idea, request.user)
           .map { result =>
             result match {
               case 0 =>
@@ -113,9 +115,9 @@ class IdeaController @Inject()(
       )
   }
 
-  def deleteIdea(id: Int) = Action.async { _ =>
+  def deleteIdea(id: Int) = withToken.async { request =>
     ideasRepo
-      .delete(id)
+      .delete(id, request.user)
       .map { result =>
         result match {
           case 0 =>
